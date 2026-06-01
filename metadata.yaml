@@ -15,5 +15,5 @@
 homepage: "https://www.basis.com"
 documentation: "https://github.com/centro/YOUR-REPO-NAME#readme"
 versions:
-  - sha: TBD, will be for iniital commit
+  - sha: 7e2e9ad52e850416b3470f5cd585dc3c6b9049d8
     changeNotes: Initial Version
