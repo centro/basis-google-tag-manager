@@ -13,7 +13,7 @@
 # limitations under the License.
 
 homepage: "https://www.basis.com"
-documentation: "https://github.com/centro/YOUR-REPO-NAME#readme"
+documentation: "https://github.com/centro/basis-google-tag-manager/blob/main/README.md"
 versions:
   - sha: 7e2e9ad52e850416b3470f5cd585dc3c6b9049d8
     changeNotes: Initial Version
