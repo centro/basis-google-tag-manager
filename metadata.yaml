@@ -15,5 +15,7 @@
 homepage: "https://www.basis.com"
 documentation: "https://github.com/centro/basis-google-tag-manager/blob/main/README.md"
 versions:
+  - sha: 50e9d62b956369b43d27bd8f421cb148edeb4cd6
+    changeNotes: README Updates and Removed (with AIR) in Template
   - sha: 7e2e9ad52e850416b3470f5cd585dc3c6b9049d8
     changeNotes: Initial Version
