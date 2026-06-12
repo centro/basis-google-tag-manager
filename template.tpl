@@ -5,7 +5,7 @@ ___INFO___
   "id": "cvt_temp_public_id",
   "version": 1,
   "securityGroups": [],
-  "displayName": "Basis Universal Pixel Template",
+  "displayName": "Basis Universal Pixel",
   "brand": {
     "id": "brand_dummy",
     "displayName": "",
@@ -52,6 +52,20 @@ ___TEMPLATE_PARAMETERS___
     "checkboxText": "Enable Advanced Identity Resolution",
     "simpleValueType": true,
     "help": "\u003cstrong\u003eAir Identity Resolution:\u003c/strong\u003e\n\u003cbr/\u003e                                                                                                                  \n\u003cbr/\u003e                                                                                                                                                            When enabled, this tag will attempt to resolve a visitor\u0027s identity, which improves audience matching for ad targeting.\n\u003cbr/\u003e\n\u003cbr/\u003e                                                                                                                                                                                                                                                                                                                 \u003cstrong\u003eNote:\u003c/strong\u003e if deployed on pages without PII input fields and no values are provided above, identity resolution will not occur. \n\u003cbr/\u003e"
+  },
+  {
+    "type": "TEXT",
+    "name": "email",
+    "displayName": "email",
+    "simpleValueType": true,
+    "help": "If the user\u0027s \u003cstrong\u003eemail\u003c/strong\u003e is already defined as a  \u003cstrong\u003eGTM variable\u003c/strong\u003e enter it here. Otherwise AIR will attempt to find email and phone numbers as they are entered on all pages where AIR is enabled"
+  },
+  {
+    "type": "TEXT",
+    "name": "phone",
+    "displayName": "phone",
+    "simpleValueType": true,
+    "help": "If the user\u0027s \u003cstrong\u003ephone\u003c/strong\u003e is already defined as a  \u003cstrong\u003eGTM variable\u003c/strong\u003e enter it here. Otherwise AIR will attempt to find email and phone numbers as they are entered on all pages where AIR is enabled"
   },
   {
     "type": "CHECKBOX",
@@ -201,12 +215,10 @@ injectScript(
         log('up.js loaded');
         if (data.enableAir) {
             var piiObj = null;
-            if (data.emailAir || data.emailSha256Air || data.phoneAir || data.phoneSha256Air) {
+            if (data.email || data.phone) {
                 piiObj = {};
-                if (data.emailAir) piiObj.email = data.emailAir;
-                if (data.emailSha256Air) piiObj.email_sha256 = data.emailSha256Air;
-                if (data.phoneAir) piiObj.phone = data.phoneAir;
-                if (data.phoneSha256Air) piiObj.phone_sha256 = data.phoneSha256Air;
+                if (data.email) piiObj.email = data.email;
+                if (data.phone) piiObj.phone = data.phone;
             }
             log('loading air.js');
             injectScript(
