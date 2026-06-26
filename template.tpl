@@ -54,20 +54,6 @@ ___TEMPLATE_PARAMETERS___
     "help": "\u003cstrong\u003eAir Identity Resolution:\u003c/strong\u003e\n\u003cbr/\u003e                                                                                                                  \n\u003cbr/\u003e                                                                                                                                                            When enabled, this tag will attempt to resolve a visitor\u0027s identity, which improves audience matching for ad targeting.\n\u003cbr/\u003e\n\u003cbr/\u003e                                                                                                                                                                                                                                                                                                                 \u003cstrong\u003eNote:\u003c/strong\u003e if deployed on pages without PII input fields and no values are provided above, identity resolution will not occur. \n\u003cbr/\u003e"
   },
   {
-    "type": "TEXT",
-    "name": "email",
-    "displayName": "email",
-    "simpleValueType": true,
-    "help": "If the user\u0027s \u003cstrong\u003eemail\u003c/strong\u003e is already defined as a  \u003cstrong\u003eGTM variable\u003c/strong\u003e enter it here. Otherwise AIR will attempt to find email and phone numbers as they are entered on all pages where AIR is enabled"
-  },
-  {
-    "type": "TEXT",
-    "name": "phone",
-    "displayName": "phone",
-    "simpleValueType": true,
-    "help": "If the user\u0027s \u003cstrong\u003ephone\u003c/strong\u003e is already defined as a  \u003cstrong\u003eGTM variable\u003c/strong\u003e enter it here. Otherwise AIR will attempt to find email and phone numbers as they are entered on all pages where AIR is enabled"
-  },
-  {
     "type": "CHECKBOX",
     "name": "useGA4",
     "checkboxText": "Use GA4 dataLayer Integration",
