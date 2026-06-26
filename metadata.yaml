@@ -15,6 +15,8 @@
 homepage: "https://www.basis.com"
 documentation: "https://github.com/centro/basis-google-tag-manager/blob/main/README.md"
 versions:
+  - sha: 3466359afad0b75a2599d32b01a3408e620fcd33
+    changeNotes: Remove the new fields in the template
   - sha: 45ac264750adb3497102bd20c2c0a9ae8f1234dd
     changeNotes: New fields added to template
   - sha: 50e9d62b956369b43d27bd8f421cb148edeb4cd6
