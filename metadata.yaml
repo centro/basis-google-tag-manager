@@ -15,6 +15,8 @@
 homepage: "https://www.basis.com"
 documentation: "https://github.com/centro/basis-google-tag-manager/blob/main/README.md"
 versions:
+  - sha: 94b1f6772a97acf7236ef3056a6cf0bc9948324b
+    changeNotes: Added TOS
   - sha: b3b5b178f54d2eb54ca802d4be4b088155629dda
     changeNotes: Call up.js track immediately after up.js loads
   - sha: 3466359afad0b75a2599d32b01a3408e620fcd33
