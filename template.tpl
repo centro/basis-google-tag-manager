@@ -198,34 +198,23 @@ log('upJsUrl:', upJsUrl);
 injectScript(
     upJsUrl,
     function() {
-        log('up.js loaded');
+        // up.js powers the pixel - fire it now so it always fires, regardless of air.js
+        log('up.js loaded, calling track');
+        callInWindow('cntrUpTag.track', 'cntrData', pixelId);
+        data.gtmOnSuccess();
         if (data.enableAir) {
-            var piiObj = null;
-            if (data.email || data.phone) {
-                piiObj = {};
-                if (data.email) piiObj.email = data.email;
-                if (data.phone) piiObj.phone = data.phone;
-            }
             log('loading air.js');
             injectScript(
                 'https://cdn01.basis.net/assets/air.js',
                 function() {
-                    log('air.js loaded, calling track');
-                    callInWindow('cntrUpTag.track', 'cntrData', pixelId);
-                    data.gtmOnSuccess();
-                    log('calling setIdForGtmTemplate');
-                    callInWindow('cntrAir.setIdForGtmTemplate', pixelId, piiObj);
+                    log('air.js loaded, calling setIdForGtmTemplate');
+                    callInWindow('cntrAir.setIdForGtmTemplate', pixelId);
                 },
                 function() {
                     log('Failed to load air.js');
-                    data.gtmOnFailure();
                 },
                 'basis_air_script'
             );
-        } else {
-            log('calling track');
-            callInWindow('cntrUpTag.track', 'cntrData', pixelId);
-            data.gtmOnSuccess();
         }
     },
     function() {
@@ -254,6 +243,10 @@ ___WEB_PERMISSIONS___
               {
                 "type": 1,
                 "string": "https://cdn01.basis.net/assets/*"
+              },
+              {
+                "type": 1,
+                "string": "https://melody.wildwebapps.com/*"
               }
             ]
           }
@@ -640,6 +633,23 @@ scenarios:
 
     assertThat(cntrDataSet4.cntr_revenue).isEqualTo(10.00);
     assertThat(cntrDataSet4.cntr_transactionId).isUndefined();
+- name: airjs fails to load - pixel still fires
+  code: |-
+    var trackCalled = false;
+    mock('injectScript', function(url, onSuccess, onFailure, cacheKey) {
+      if (cacheKey === 'basis_up_script') onSuccess();   // up.js loads
+      else onFailure();                                  // air.js fails
+    });
+    mock('callInWindow', function(a) {
+      if (a === 'cntrUpTag.track') trackCalled = true;
+    });
+    mock('logToConsole', function() {});
+
+    runCode({ universalPixelId: 'TEST-PIXEL-123', enableAir: true, cookieless: true });
+
+    assertThat(trackCalled).isEqualTo(true);
+    assertApi('gtmOnSuccess').wasCalled();
+    assertApi('gtmOnFailure').wasNotCalled();
 setup: |-
   // Shared mocks
   var mockInjectSuccess = function(url, onSuccess, onFailure, cacheKey) {
